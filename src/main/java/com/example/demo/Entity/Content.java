@@ -1,4 +1,4 @@
-package com.example.demo.controller.Entity;
+package com.example.demo.Entity;
 
 import jakarta.persistence.*;
 

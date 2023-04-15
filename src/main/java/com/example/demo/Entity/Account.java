@@ -1,4 +1,4 @@
-package com.example.demo.controller.Entity;
+package com.example.demo.Entity;
 
 import jakarta.persistence.*;
 
@@ -32,7 +32,7 @@ public class Account {
     private List<Report> reports;
     @ManyToMany
     @JoinTable(name = "student_course", joinColumns = @JoinColumn(name = "Account_ID"), inverseJoinColumns = @JoinColumn(name = "course_id"))
-            private Conversation conversation;
+    private Conversation conversation;
 
 
 }
