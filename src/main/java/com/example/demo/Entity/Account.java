@@ -31,7 +31,7 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<Report> reports;
     @ManyToMany
-    @JoinTable(name = "student_course", joinColumns = @JoinColumn(name = "Account_ID"), inverseJoinColumns = @JoinColumn(name = "course_id")
+    @JoinTable(name = "student_course", joinColumns = @JoinColumn(name = "Account_ID"), inverseJoinColumns = @JoinColumn(name = "course_id"))
             private Conversation conversation;
 
 
