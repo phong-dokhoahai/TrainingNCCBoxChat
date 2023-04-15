@@ -8,7 +8,7 @@ import java.util.Date;
 public class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String content_ID;
+    private Long content_ID;
     @Column(name = "contentTime")
     private Date contentTime;
     @Column(name = "contentType")

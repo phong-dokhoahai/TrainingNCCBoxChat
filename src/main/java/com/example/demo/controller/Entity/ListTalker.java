@@ -7,7 +7,7 @@ import java.util.List;
 public class ListTalker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String listTalker_ID;
+    private Long listTalker_ID;
     @Column(name = "listFriend")
     private static List<Account> listFriend;
     @Column(name = "listBlock")

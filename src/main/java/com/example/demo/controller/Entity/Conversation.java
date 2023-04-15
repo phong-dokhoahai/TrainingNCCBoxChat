@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Conversation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String conversation_ID;
+    private Long conversation_ID;
     @Column(name = "conversationName")
     private String conversationName;
     @Column(name = "numPeople")

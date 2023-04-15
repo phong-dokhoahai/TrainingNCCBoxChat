@@ -11,7 +11,7 @@ import java.util.List;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String user_ID;
+    private Long user_ID;
     @Column(name = "accountName")
     private String accountName;
     @Column(name = "accountPassword")
@@ -21,7 +21,6 @@ public class Account {
 
     private String userName;
     @Column(name = "userBorn")
-
     private Date userBorn;
     @Column(name = "accountNote")
     private StringBuffer accountNote;
@@ -32,8 +31,8 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<Report> reports;
     @ManyToMany
-    private Conversation conversation;
-    @Column(name = "type")
-    private String type;
+    @JoinTable(name = "student_course", joinColumns = @JoinColumn(name = "Account_ID"), inverseJoinColumns = @JoinColumn(name = "course_id")
+            private Conversation conversation;
+
 
 }

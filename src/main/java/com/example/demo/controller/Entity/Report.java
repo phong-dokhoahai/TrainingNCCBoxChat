@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String report_ID;
+    private Long report_ID;
     @Column(name = "reportType")
     private String reportType;
     @Column(name = "reportContent")
