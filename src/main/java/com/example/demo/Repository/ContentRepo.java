@@ -1,4 +1,4 @@
-package com.example.demo.controller.Repository;
+package com.example.demo.Repository;
 
 import org.springframework.stereotype.Repository;
 
