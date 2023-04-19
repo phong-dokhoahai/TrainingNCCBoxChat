@@ -1,6 +1,8 @@
-package com.example.demo.controller;
-
-import org.springframework.stereotype.Controller;
-
-public class AdminControll {
-}
+//package com.example.demo.controller;
+//
+//import org.springframework.stereotype.Controller;
+//import org.springframework.web.bind.annotation.RestController;
+//
+//@RestController
+//public class AdminControll extends AccountControll {
+//}
