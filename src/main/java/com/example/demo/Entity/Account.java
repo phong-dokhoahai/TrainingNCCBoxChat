@@ -1,6 +1,6 @@
 package com.example.demo.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,28 +14,68 @@ import java.util.List;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_ID;
-    @Column(name = "account_name")
-    private String accountName;
-    @Column(name = "account_password")
-    private String accountPassword;
-    @Column(name = "user_name")
-    private String userName;
-    @Column(name = "user_born")
-    private Date userBorn;
-    @Column(name = "account_note")
+    private Long id;
+
+    @Column(unique = true)
+    private String username;
+    @Column
+    private String password;
+    @Column
+    private String firstName;
+    @Column
+    private String lastName;
+    @Column
+    private Date dateOfBirth;
+    @Column
     private String accountNote;
-    @Column(name = "account_nickname")
-    private String accountNickName;
-    @Column(name = "Admin")
-    private boolean admin;
+    @Column
+    private String phoneNumber;
+    @Column
+    private String nickName;
+    @Column
+    @Nullable
+    private boolean gender;
+    @Column
+    private String email;
 
-    @ManyToMany(mappedBy = "users",fetch = FetchType.LAZY)
-    private List<ListUser> listUser;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", length = 20)
+    private Role role;
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
-    private List<Report> reports;
+    public enum Role {
+        ADMIN, USER
+    }
 
-    @ManyToMany(mappedBy = "accountC", fetch = FetchType.LAZY)
-    private List<Conversation> conversation;
+    @OneToOne(mappedBy = "account")
+    private RelatedUser relatedUser;
+
+    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
+    private List<Report> reportList;
+
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
+    private List<AccountConversationBroker> accountConversationBroker;
+
+//    @ManyToMany(mappedBy = "accounts", fetch = FetchType.LAZY)
+//    private List<Conversation> conversation;
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", accountNote='" + accountNote + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", gender=" + gender +
+                ", email='" + email + '\'' +
+                ", role=" + role +
+                ", relatedUser=" + relatedUser +
+                ", reportList=" + reportList +
+                ", accountConversationBroker=" + accountConversationBroker +
+                '}';
+    }
 }

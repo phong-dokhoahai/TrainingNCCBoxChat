@@ -1,9 +1,8 @@
 package com.example.demo.Repository;
 
-import com.example.demo.Entity.ListUser;
+import com.example.demo.Entity.RelatedUser;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface ListUserRepo extends JpaRepository<ListUser, Long> {
+
+public interface ListUserRepo extends JpaRepository<RelatedUser, Long> {
 }

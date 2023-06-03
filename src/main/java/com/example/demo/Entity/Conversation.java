@@ -12,26 +12,29 @@ import java.util.List;
 public class Conversation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long conversation_ID;
+    private Long id;
 
-    @Column(name = "conversationName")
+    @Column
     private String conversationName;
 
-    @Column(name = "numPeople")
-    private Integer numPeople;
-
-    @Column(name = "conversationType")
+    @Column
     @Enumerated(EnumType.STRING)
     private ConversationType conversationType ;
-
+    public enum ConversationType {
+        PERSON, GROUP
+    }
     //Relation to Content
-    @OneToMany(mappedBy = "conversation", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "conversation", fetch = FetchType.EAGER)
     private List<Content> content;
+
     //Relation to Account
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "account_conversation",
-            joinColumns = @JoinColumn(name = "conversation_ID"),
-            inverseJoinColumns = @JoinColumn(name = "user_ID"))
-    private List<Account> accountC;
+    @OneToMany(mappedBy = "conversation")
+    private List<AccountConversationBroker> accountConversationBroker;
+
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "account_conversation",
+//            joinColumns = @JoinColumn(name = "conversation_id"),
+//            inverseJoinColumns = @JoinColumn(name = "account_id"))
+//    private List<Account> accounts;
 }
 

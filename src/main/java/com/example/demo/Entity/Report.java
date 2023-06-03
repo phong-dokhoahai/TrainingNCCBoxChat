@@ -12,21 +12,22 @@ import java.util.List;
 public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long report_ID;
-    @Column(name = "report_type")
+    private Long id;
+
     @Enumerated(EnumType.STRING)
+    @Column
     private ReportType reportType;
-    @Column(name = "report_nickname")
-    private String reportNickName;
+    enum ReportType {
+        TOXIC
+    }
+    @Column
+    private String nickName;
 
-
-    @OneToMany(mappedBy = "content_ID", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "report", fetch = FetchType.LAZY)
     private List<Content> reportContent;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_ID")
+
+    @ManyToOne
+    @JoinColumn(name="account_id")
     private Account account;
 
-}
-enum ReportType {
-    Toxic
 }

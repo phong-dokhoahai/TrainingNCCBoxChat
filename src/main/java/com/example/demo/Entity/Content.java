@@ -1,7 +1,9 @@
 package com.example.demo.Entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
@@ -9,28 +11,33 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long content_ID;
-    @Column(name = "contentTime")
-    private Date contentTime;
-    @Column(name = "contentType")
+    private Long id;
+    @Column
+    private Date createdDate;
+    @Column
     @Enumerated(EnumType.STRING)
     private ContentType contentType;
-    @Column(name = "contentNickName")
-    private String contentNickName;
+    public enum ContentType {
+        MESSAGE,VIDEO,IMAGE,FILE
+    }
+    @Column
+    private String nickName;
+    @Column
+    private String content;
 
     // Relation to Conversation Table
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="conversation_ID" )
+    @JoinColumn(name="conversation_id")
     private Conversation conversation;
 
     //Relation to Report Table
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "report_ID")
+    @JoinColumn(name = "report_id")
     private Report report;
-}
-enum ContentType {
-    MESSAGE,VIDEO,IMAGE,FILE
+
 }

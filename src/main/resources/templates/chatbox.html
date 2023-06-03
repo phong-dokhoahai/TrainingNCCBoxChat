@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Box Chat</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/login/chatbox.css}">
+</head>
+<body>
+<div class='container' ng-cloak ng-app="chatApp">
+    <h1>Swanky Chatbox UI With Angular</h1>
+    <div class='demo'>
+        <p th:value="${demo}"></p>
+    </div>
+    <div class='chatbox' ng-controller="MessageCtrl as chatMessage">
+        <tr th:each="conversation: ${conversations}" class='chatbox__user-list'>
+        <tr class='chatbox__user--active'>
+            <td th:button th:text="${conversation.conversationName}" th:type="submit" th:formaction="/chatbox/${conversation.id}"></td>
+            <td th:each="content :${contents}" class="chatbox__messages__user-message--ind-message">
+                <p th:text="${content.id}"></p>
+                <p th:text="${content.content}"></p>
+            </td>
+        </tr>
+        </tr>
+
+        <div th:each="content :${contents}" class="chatbox__messages__user-message--ind-message">
+            <p th:text="${content.id}"></p>
+            <p th:text="${content.content}"></p>
+        </div>
+    </div>
+</body>
+</html>
